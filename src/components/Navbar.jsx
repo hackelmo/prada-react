@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { HiOutlineShoppingBag, HiOutlineUser, HiUser } from "react-icons/hi";
+import {
+  HiLogout,
+  HiOutlineShoppingBag,
+  HiOutlineUser,
+  HiUser,
+} from "react-icons/hi";
+import { login, logout } from "../api/firebase";
 
 export default function Navbar() {
+  const [user, setUser] = useState();
+  const handleLogin = () => {
+    login().then(setUser);
+  };
+  const handleLogout = () => {
+    logout().then(setUser);
+  };
+
   return (
     <header className="flex justify-between border-b border-gray-300 p-3">
       <Link to="/">
@@ -18,9 +32,16 @@ export default function Navbar() {
           <HiOutlineShoppingBag />
         </Link>
         <Link to="/products/new">NewProduct</Link>
-        <button className="text-2xl">
-          <HiOutlineUser />
-        </button>
+        {!user && (
+          <button className="text-2xl" onClick={handleLogin}>
+            <HiOutlineUser />
+          </button>
+        )}
+        {user && (
+          <button className="text-2xl" onClick={handleLogout}>
+            <HiUser />
+          </button>
+        )}
       </nav>
     </header>
   );
