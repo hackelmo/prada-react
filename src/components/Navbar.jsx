@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   HiLogout,
@@ -6,19 +6,19 @@ import {
   HiOutlineUser,
   HiUser,
 } from "react-icons/hi";
-import { login, logout } from "../api/firebase";
+import { login, logout, onUserStateChange } from "../api/firebase";
+import User from "./User";
 
 export default function Navbar() {
   const [user, setUser] = useState();
-  const handleLogin = () => {
-    login().then(setUser);
-  };
-  const handleLogout = () => {
-    logout().then(setUser);
-  };
+
+  useEffect(() => {
+    //한번 호출해놓으면 계속 로그인정보가 바뀔때마다 실행
+    onUserStateChange(setUser);
+  }, []);
 
   return (
-    <header className="flex justify-between border-b border-gray-300 p-3">
+    <header className="flex items-center justify-between border-b border-gray-300 p-3">
       <Link to="/">
         <img
           width={120}
@@ -31,14 +31,16 @@ export default function Navbar() {
         <Link to="/carts" className="text-2xl">
           <HiOutlineShoppingBag />
         </Link>
+
         <Link to="/products/new">NewProduct</Link>
+        {user && <User user={user} />}
         {!user && (
-          <button className="text-2xl" onClick={handleLogin}>
+          <button className="text-2xl" onClick={login}>
             <HiOutlineUser />
           </button>
         )}
         {user && (
-          <button className="text-2xl" onClick={handleLogout}>
+          <button className="text-2xl" onClick={logout}>
             <HiUser />
           </button>
         )}
