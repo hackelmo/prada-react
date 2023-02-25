@@ -6,15 +6,17 @@ import {
   HiOutlineUser,
   HiUser,
 } from "react-icons/hi";
-import { login, logout, onUserStateChange } from "../api/firebase";
+import { login, logout, onUserStateChange, testa } from "../api/firebase";
 import User from "./User";
 
 export default function Navbar() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState("");
 
   useEffect(() => {
-    //한번 호출해놓으면 계속 로그인정보가 바뀔때마다 실행
-    onUserStateChange(setUser);
+    onUserStateChange((user) => {
+      console.log(user);
+      setUser(user);
+    });
   }, []);
 
   return (
