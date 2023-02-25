@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { v4 as uuid } from "uuid";
 import {
   getAuth,
   signInWithPopup,
@@ -6,7 +7,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { get, getDatabase, ref, child } from "firebase/database";
+import { get, getDatabase, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -31,6 +32,7 @@ export function logout() {
   return signOut(auth).catch(console.error);
 }
 
+//사용자 상태변경하는 것 듣기
 export function onUserStateChange(callback) {
   onAuthStateChanged(auth, async (user) => {
     const updatedUser = user ? await adminUser(user) : null;
@@ -46,7 +48,17 @@ async function adminUser(user) {
         const isAdmin = admin.includes(user.uid);
         return { ...user, isAdmin };
       }
-      //어드민 존재하지않거나 네트워크
       return user;
     });
+}
+
+export function addNewProduct(product, image) {
+  const id = uuid();
+  set(ref(database, `products/${id}`), {
+    ...product,
+    id,
+    image,
+    price: parseInt(product.price),
+    options: product.options.toUpperCase().split(","),
+  });
 }
