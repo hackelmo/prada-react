@@ -4,7 +4,7 @@ export default function User({ user: { photoURL, displayName } }) {
   return (
     <div className="flex items-center">
       <img
-        className="w-7 h-7 rounded-full mr-2"
+        className="w-6 h-6 rounded-full mr-2"
         src={photoURL}
         alt={displayName}
       />
