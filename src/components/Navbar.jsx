@@ -21,7 +21,7 @@ export default function Navbar() {
       <nav className="flex items-center gap-4 font-semibold">
         <Link to="/products">AllProducts</Link>
         {user && (
-          <Link to="/carts" className="text-2xl">
+          <Link to="/carts" className="text-xl">
             <HiOutlineShoppingBag />
           </Link>
         )}
@@ -31,8 +31,16 @@ export default function Navbar() {
           </Link>
         )}
         {user && <User user={user} />}
-        {!user && <Button onClick={login} text={<HiOutlineUser />} />}
-        {user && <Button onClick={logout} text={<HiUser />} />}
+        {!user && (
+          <button className="text-xl" onClick={login}>
+            <HiOutlineUser />
+          </button>
+        )}
+        {user && (
+          <button className="text-xl" onClick={logout}>
+            <HiUser />
+          </button>
+        )}
       </nav>
     </header>
   );
