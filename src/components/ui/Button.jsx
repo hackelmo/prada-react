@@ -1,5 +1,4 @@
 import React from "react";
-import { HiEmojiHappy } from "react-icons/hi";
 
 export default function Button({ text }) {
   return (
@@ -8,9 +7,3 @@ export default function Button({ text }) {
     </button>
   );
 }
-
-// font-size : 12px
-// font -weight: 600
-// text-align: center
-// width:148;
-// height:15px

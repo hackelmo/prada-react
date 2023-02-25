@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HiOutlineShoppingBag, HiOutlineUser, HiUser } from "react-icons/hi";
-import { BsFillPencilFill } from "react-icons/bs";
+import { HiOutlineShoppingBag, HiOutlineUser } from "react-icons/hi";
+import { BsFillPencilFill, BsBook } from "react-icons/bs";
+import { MdOutlineWorkOutline } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 import User from "./User";
-import Button from "./ui/Button";
 import { useAuthContext } from "./context/AuthContext";
 
 export default function Navbar() {
@@ -19,7 +20,9 @@ export default function Navbar() {
         />
       </Link>
       <nav className="flex items-center gap-4 font-semibold">
-        <Link to="/products">AllProducts</Link>
+        <Link to="/products" className="text-xl">
+          <MdOutlineWorkOutline />
+        </Link>
         {user && (
           <Link to="/carts" className="text-xl">
             <HiOutlineShoppingBag />
@@ -30,7 +33,7 @@ export default function Navbar() {
             <BsFillPencilFill />
           </Link>
         )}
-        {user && <User user={user} />}
+        {/* {user && <User user={user} />} */}
         {!user && (
           <button className="text-xl" onClick={login}>
             <HiOutlineUser />
@@ -38,7 +41,7 @@ export default function Navbar() {
         )}
         {user && (
           <button className="text-xl" onClick={logout}>
-            <HiUser />
+            <MdLogout />
           </button>
         )}
       </nav>

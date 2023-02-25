@@ -54,7 +54,7 @@ async function adminUser(user) {
     });
 }
 
-export function addNewProduct(product, image) {
+export async function addNewProduct(product, image) {
   const id = uuid();
   set(ref(database, `products/${id}`), {
     ...product,
@@ -62,5 +62,16 @@ export function addNewProduct(product, image) {
     image,
     price: parseInt(product.price),
     options: product.options.toUpperCase().split(","),
+  });
+}
+
+export async function getProducts() {
+  return get(ref(database, "products")).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+      // console.log(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
   });
 }
