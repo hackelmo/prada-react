@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineShoppingBag, HiOutlineUser } from "react-icons/hi";
-import { BsFillPencilFill, BsBook } from "react-icons/bs";
+import { BsFillPencilFill } from "react-icons/bs";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
 import User from "./User";
@@ -11,7 +11,7 @@ export default function Navbar() {
   const { user, login, logout } = useAuthContext();
 
   return (
-    <header className="flex items-center justify-between border-b border-gray-300 p-3">
+    <header className="flex items-center justify-between border-b border-gray-300 p-3 mb-2">
       <Link to="/">
         <img
           width={120}
