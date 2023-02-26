@@ -1,5 +1,9 @@
 import React from "react";
 import { addOrUpdateCart, removeCart } from "../api/firebase";
+import { AiOutlineMinusSquare, AiOutlinePlusSquare } from "react-icons/ai";
+import { BiTrash } from "react-icons/bi";
+
+const ICON_CLASS = "transition-all cursor-pointer hover:scale-105";
 
 export default function CartItem({
   product,
@@ -16,16 +20,19 @@ export default function CartItem({
   const handleDelete = () => removeCart(uid, id);
 
   return (
-    <li>
-      <img src={image} alt={title} />
-      <div>
-        <p>{title}</p>
-        <p>{option}</p>
-        <div>
-          <p onClick={handleMinus}>-</p>
+    <li className="flex justify-between items-center my-2">
+      <img src={image} alt={title} className="w-24 md:w-48" />
+      <div className="flex-1 flex justify-between ml-4">
+        <div className="basis-3/5">
+          <p className="text-lg">{title}</p>
+          <p className="font-bold text-xl">{option}</p>
+          <p>₩{price}</p>
+        </div>
+        <div className="text-lg flex items-center">
+          <AiOutlineMinusSquare className={ICON_CLASS} onClick={handleMinus} />
           <span>{quantity}</span>
-          <p onClick={handlePlus}>+</p>
-          <p onClick={handleDelete}> 휴지통</p>
+          <AiOutlinePlusSquare className={ICON_CLASS} onClick={handlePlus} />
+          <BiTrash className={ICON_CLASS} onClick={handleDelete} />
         </div>
       </div>
     </li>
