@@ -5,7 +5,7 @@ import { BsFillPencilFill } from "react-icons/bs";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
 import User from "./User";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
   const { user, login, logout } = useAuthContext();
