@@ -1,6 +1,7 @@
 import React from "react";
+import CartStatus from "./CartStatus";
 import { Link } from "react-router-dom";
-import { HiOutlineShoppingBag, HiOutlineUser } from "react-icons/hi";
+import { HiOutlineUser } from "react-icons/hi";
 import { BsFillPencilFill } from "react-icons/bs";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
@@ -25,7 +26,7 @@ export default function Navbar() {
         </Link>
         {user && (
           <Link to="/carts" className="text-xl">
-            <HiOutlineShoppingBag />
+            <CartStatus />
           </Link>
         )}
         {user && user.isAdmin && (
