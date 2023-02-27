@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Button from "../components/ui/Button";
-import { useAuthContext } from "../context/AuthContext";
 import useCart from "../hooks/useCart";
 
 export default function ProductDetail() {
-  const { uid } = useAuthContext();
   const {
     state: {
       product: { category, image, id, options, desc, price, title },
@@ -14,7 +12,7 @@ export default function ProductDetail() {
   const [success, setSuccess] = useState();
 
   const {
-    addCart: { mutate },
+    addOrUpdateItem: { mutate },
   } = useCart();
 
   const [selected, setSelected] = useState(options && options[0]);
@@ -24,17 +22,14 @@ export default function ProductDetail() {
   };
   const handleClick = () => {
     const product = { id, price, image, title, option: selected, quantity: 1 };
-    mutate(
-      { uid, product },
-      {
-        onSuccess: () => {
-          setSuccess(true);
-          setTimeout(() => {
-            setSuccess(null);
-          }, 4000);
-        },
-      }
-    );
+    mutate(product, {
+      onSuccess: () => {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(null);
+        }, 4000);
+      },
+    });
   };
 
   return (

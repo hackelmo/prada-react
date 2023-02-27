@@ -1,5 +1,4 @@
 import React from "react";
-import { addOrUpdateCart, removeCart } from "../api/firebase";
 import { AiOutlineMinusSquare, AiOutlinePlusSquare } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 import useCart from "../hooks/useCart";
@@ -13,20 +12,17 @@ const formatComma = (number) => {
 export default function CartItem({
   product,
   product: { image, title, id, quantity, price, option },
-  uid,
 }) {
-  const { addCart, deleteCart } = useCart();
+  const { addOrUpdateItem, removeItem } = useCart();
   const handleMinus = () => {
     if (quantity < 2) return;
-    const updatedProduct = { ...product, quantity: quantity - 1 };
-    addCart.mutate({ uid, product: updatedProduct });
+    addOrUpdateItem.mutate({ ...product, quantity: quantity - 1 });
   };
   const handlePlus = () => {
-    const updatedProduct = { ...product, quantity: quantity + 1 };
-    addCart.mutate({ uid, product: updatedProduct });
+    addOrUpdateItem.mutate({ ...product, quantity: quantity + 1 });
   };
 
-  const handleDelete = () => deleteCart.mutate({ uid, id });
+  const handleDelete = () => removeItem.mutate(id);
 
   return (
     <li className="flex justify-between items-center my-2">
