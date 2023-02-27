@@ -20,7 +20,7 @@ export default function ProductCard({
       <img className="w-full" src={image} alt={id} />
       <div className="mt-2 text-sm flex flex-col gap-1">
         <h3 className="truncate font-semibold">{title}</h3>
-        <p>{`₩ ${formatComma(price)}`}</p>
+        <p className="text-xs">{`₩ ${formatComma(price)}`}</p>
         <p className="mb-2 text-xs text-gray-600">{category}</p>
       </div>
     </li>
