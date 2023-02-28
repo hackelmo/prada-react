@@ -12,7 +12,7 @@ export default function Navbar() {
   const { user, login, logout } = useAuthContext();
 
   return (
-    <header className="flex items-center justify-between border-b border-gray-300 p-3 mb-2">
+    <header className="flex items-center justify-between border-b border-gray-300 p-3 mb-2 p-2 md:px-4 lg:px-6 xl:px-8">
       <Link to="/">
         <img
           width={120}

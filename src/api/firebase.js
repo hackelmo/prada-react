@@ -69,7 +69,6 @@ export async function getProducts() {
   return get(ref(database, "products")).then((snapshot) => {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
-      // console.log(snapshot.val());
     } else {
       console.log("No data available");
     }

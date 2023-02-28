@@ -15,7 +15,7 @@ body {
 
 #root {
   /* 총 크기 정해놓기 */
-  @apply w-full px-2;
+  /* @apply w-full px-2; */
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
