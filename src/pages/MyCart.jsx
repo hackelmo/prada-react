@@ -18,7 +18,7 @@ export default function MyCart() {
 
   if (isLoading) return <p>Loading..</p>;
   return (
-    <section className="p-8 flex flex-col">
+    <section className="p-8 flex flex-col ">
       <p className="text-xl font-bold text-center pb-4 border-b border-gray-300">
         내 장바구니
       </p>
@@ -31,7 +31,7 @@ export default function MyCart() {
                 <CartItem key={product.id} product={product} />
               ))}
           </ul>
-          <div className="flex justify-between items-center px-2 md:px-8 lg:px-1 mb-6">
+          <div className="flex justify-between items-center md:px-8 lg:px-1 mb-6 w-auto mx-auto">
             <PriceCard text="상품 총액" price={totalPrice} />
             <div className="shrink-0">+</div>
             <PriceCard text="배송액" price={SHIPPING} />

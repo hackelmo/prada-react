@@ -8,7 +8,7 @@ const formatComma = (number) => {
 
 export default function PriceCard({ price, text }) {
   return (
-    <div className="bg-gray-50 p-8 mx-2 rounded-2xl text-center md:text-lg">
+    <div className="bg-gray-50 p-2.5 md:p-8 rounded-2xl text-center md:text-lg bottom-0">
       <p>{text}</p>
       <p className="font-bold text-lg md:text-xl">₩ {formatComma(price)}</p>
     </div>
