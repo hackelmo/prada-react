@@ -12,10 +12,10 @@ export default function Navbar() {
   const { user, login, logout } = useAuthContext();
 
   return (
-    <header className="flex items-center justify-between border-b border-gray-300 p-3 mb-2 md:px-4 lg:px-6 xl:px-8 fixed z-10 w-full bg-white">
+    <>
       <Link to="/">
         <img
-          width={120}
+          width={115}
           alt="프라다"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Prada-Logo.svg/1280px-Prada-Logo.svg.png"
         />
@@ -46,6 +46,6 @@ export default function Navbar() {
           </button>
         )}
       </nav>
-    </header>
+    </>
   );
 }
